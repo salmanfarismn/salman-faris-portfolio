@@ -1,9 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import { Section } from "@/components/Section";
 import { portfolioData } from "@/data/portfolio";
 import { Mail } from "lucide-react";
 
 export function Contact() {
   const { contact } = portfolioData;
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = `Portfolio Contact: Message from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0A${formData.message}`;
+    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+  };
 
   return (
     <Section id="contact">
@@ -60,7 +71,7 @@ export function Contact() {
         </div>
 
         <div>
-          <form className="flex flex-col gap-6 bg-[var(--color-tertiary)] p-8 md:p-12">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 bg-[var(--color-tertiary)] p-8 md:p-12">
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-[var(--color-primary)] uppercase tracking-wider mb-2">
                 Name
@@ -68,6 +79,9 @@ export function Contact() {
               <input
                 type="text"
                 id="name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full bg-white border-b-2 border-[var(--color-secondary)]/20 px-4 py-4 text-lg focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                 placeholder="John Doe"
               />
@@ -80,6 +94,9 @@ export function Contact() {
               <input
                 type="email"
                 id="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-white border-b-2 border-[var(--color-secondary)]/20 px-4 py-4 text-lg focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                 placeholder="john@example.com"
               />
@@ -91,14 +108,17 @@ export function Contact() {
               </label>
               <textarea
                 id="message"
+                required
                 rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full bg-white border-b-2 border-[var(--color-secondary)]/20 px-4 py-4 text-lg focus:outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
                 placeholder="Tell me about your project..."
               ></textarea>
             </div>
 
             <button
-              type="button"
+              type="submit"
               className="bg-[var(--color-primary)] text-white px-8 py-5 text-lg font-medium hover:bg-black transition-colors w-full md:w-auto self-start"
             >
               Send Message
