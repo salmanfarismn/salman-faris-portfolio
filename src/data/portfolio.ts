@@ -34,6 +34,7 @@ export const portfolioData = {
       title: "UrbanStays",
       subtitle: "Vacation Rental Platform",
       link: "https://github.com/salmanfarismn/urban_stays",
+      liveLink: "https://wanderlust-project-hgyh.onrender.com",
       description: "Full-Stack Airbnb-inspired Application.",
       problem:
         "Building a scalable infrastructure to handle dynamic property listings, concurrent bookings, and high-quality image assets without degrading performance.",

@@ -27,14 +27,29 @@ export function Projects() {
                   {project.description}
                 </p>
                 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-b border-[var(--color-white)] pb-1 hover:text-[#A1A1A1] hover:border-[#A1A1A1] transition-all font-medium"
-                >
-                  View Source Code <MoveUpRight size={16} />
-                </a>
+                <div className="flex flex-wrap gap-6">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border-b border-[var(--color-white)] pb-1 hover:text-[#A1A1A1] hover:border-[#A1A1A1] transition-all font-medium"
+                  >
+                    View Source Code <MoveUpRight size={16} />
+                  </a>
+
+                  {/* @ts-ignore: liveLink might not exist on all items */}
+                  {project.liveLink && (
+                    <a
+                      // @ts-ignore
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 border-b border-[var(--color-white)] pb-1 text-[var(--color-white)] hover:text-[#A1A1A1] hover:border-[#A1A1A1] transition-all font-medium"
+                    >
+                      Live Project <MoveUpRight size={16} />
+                    </a>
+                  )}
+                </div>
 
                 <div className="mt-12 flex flex-wrap gap-2">
                   {project.techStack.map((tech, idx) => (
