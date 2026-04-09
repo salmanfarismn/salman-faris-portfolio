@@ -67,11 +67,74 @@ export function Hero() {
           </div>
           
           <div className="hidden lg:block lg:col-span-4">
-            {/* Minimal right side. Empty space acts as whitespace, but we could add a subtle structural element. */}
-            <div className="w-full aspect-[3/4] bg-[var(--color-tertiary)] flex items-end p-8">
-              <span className="text-xs text-[var(--color-secondary)] uppercase tracking-widest font-mono">
-                System Design Focus
+            <div className="w-full aspect-[3/4] bg-[var(--color-tertiary)] flex items-center justify-center p-8 border border-[var(--color-secondary)]/10 overflow-hidden relative">
+              <span className="absolute bottom-4 right-6 text-[10px] text-[var(--color-secondary)] uppercase tracking-widest font-mono">
+                System flow
               </span>
+              <svg viewBox="0 0 200 300" className="w-full h-full text-[var(--color-primary)]">
+                {/* Database Cylinder */}
+                <motion.path
+                  d="M100 240 C140 240, 160 230, 160 220 L160 260 C160 270, 140 280, 100 280 C60 280, 40 270, 40 260 L40 220 C40 230, 60 240, 100 240 Z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                />
+                <motion.ellipse
+                  cx="100" cy="220" rx="60" ry="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.5 }}
+                />
+
+                {/* API Node */}
+                <motion.rect
+                  x="60" y="100" width="80" height="40" rx="4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                />
+                <text x="100" y="125" textAnchor="middle" className="text-[10px] font-mono fill-current font-semibold">API GW</text>
+
+                {/* Client Nodes */}
+                <motion.circle cx="40" cy="40" r="15" fill="none" stroke="currentColor" strokeWidth="2" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.1 }} />
+                <motion.circle cx="100" cy="40" r="15" fill="none" stroke="currentColor" strokeWidth="2" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2 }} />
+                <motion.circle cx="160" cy="40" r="15" fill="none" stroke="currentColor" strokeWidth="2" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} />
+
+                {/* Connecting Lines */}
+                <motion.path
+                  d="M40 55 L70 100 M100 55 L100 100 M160 55 L130 100 M100 140 L100 200"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1, delay: 1 }}
+                />
+
+                {/* Flowing Data Particles */}
+                <motion.circle cx="100" cy="140" r="3" fill="currentColor"
+                  animate={{ y: [0, 60], opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear", delay: 2 }}
+                />
+                <motion.circle cx="40" cy="55" r="3" fill="currentColor"
+                  animate={{ x: [0, 30], y: [0, 45], opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear", delay: 2.5 }}
+                />
+                <motion.circle cx="160" cy="55" r="3" fill="currentColor"
+                  animate={{ x: [0, -30], y: [0, 45], opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear", delay: 3 }}
+                />
+              </svg>
             </div>
           </div>
         </div>
